@@ -36,9 +36,11 @@ func CreateSecretNamespaceExternalDnsGoogle(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	if parent.Spec.ExternalDNS.Provider != "google" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// +operator-builder:resource:field=externalDNS.provider,value="google",include
@@ -48,8 +50,8 @@ func CreateSecretNamespaceExternalDnsGoogle(
 				"name":      "external-dns-google",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 			},
 			"stringData": map[string]interface{}{

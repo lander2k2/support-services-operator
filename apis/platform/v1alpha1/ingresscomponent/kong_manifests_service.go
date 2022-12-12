@@ -36,8 +36,14 @@ func CreateServiceNamespaceKongProxy(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "Service",
 			"metadata": map[string]interface{}{
@@ -48,8 +54,8 @@ func CreateServiceNamespaceKongProxy(
 				"name":      "kong-proxy",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -87,16 +93,22 @@ func CreateServiceNamespaceKongValidationWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "Service",
 			"metadata": map[string]interface{}{
 				"name":      "kong-validation-webhook",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{

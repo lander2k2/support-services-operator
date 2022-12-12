@@ -36,8 +36,14 @@ func CreateCRDClusterexternalsecretsExternalSecretsIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -46,8 +52,8 @@ func CreateCRDClusterexternalsecretsExternalSecretsIo(
 				},
 				"name": "clusterexternalsecrets.external-secrets.io",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -588,8 +594,14 @@ func CreateCRDClustersecretstoresExternalSecretsIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -598,8 +610,8 @@ func CreateCRDClustersecretstoresExternalSecretsIo(
 				},
 				"name": "clustersecretstores.external-secrets.io",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -3667,8 +3679,14 @@ func CreateCRDExternalsecretsExternalSecretsIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -3677,8 +3695,8 @@ func CreateCRDExternalsecretsExternalSecretsIo(
 				},
 				"name": "externalsecrets.external-secrets.io",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -4458,8 +4476,14 @@ func CreateCRDSecretstoresExternalSecretsIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -4468,8 +4492,8 @@ func CreateCRDSecretstoresExternalSecretsIo(
 				},
 				"name": "secretstores.external-secrets.io",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"spec": map[string]interface{}{

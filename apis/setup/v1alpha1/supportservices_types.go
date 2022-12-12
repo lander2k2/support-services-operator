@@ -35,12 +35,12 @@ type SupportServicesSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
-	// +kubebuilder:default="development"
+	// +kubebuilder:default="local"
 	// +kubebuilder:validation:Optional
-	// (Default: "development")
+	// (Default: "local")
 	//
-	//	+kubebuilder:validation:Enum=development;staging;production
-	//	The tier of cluster being used.  One of: development | staging | production.
+	//	+kubebuilder:validation:Enum=local;development;production
+	//	The tier of cluster being used.  One of: local | development | production.
 	Tier string `json:"tier,omitempty"`
 }
 

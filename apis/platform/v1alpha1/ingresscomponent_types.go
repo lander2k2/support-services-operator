@@ -46,6 +46,12 @@ type IngressComponentSpec struct {
 	// +kubebuilder:validation:Optional
 	Nginx IngressComponentSpecNginx `json:"nginx,omitempty"`
 
+	// +kubebuilder:validation:Optional
+	Kong IngressComponentSpecKong `json:"kong,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	ExternalDNS IngressComponentSpecExternalDNS `json:"externalDNS,omitempty"`
+
 	// +kubebuilder:default="nukleros-ingress-system"
 	// +kubebuilder:validation:Optional
 	// (Default: "nukleros-ingress-system")
@@ -53,14 +59,8 @@ type IngressComponentSpec struct {
 	//	Namespace to use for ingress support services.
 	Namespace string `json:"namespace,omitempty"`
 
-	// +kubebuilder:validation:Optional
-	ExternalDNS IngressComponentSpecExternalDNS `json:"externalDNS,omitempty"`
-
 	// +kubebuilder:validation:Required
 	DomainName string `json:"domainName,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Kong IngressComponentSpecKong `json:"kong,omitempty"`
 }
 
 type IngressComponentCollectionSpec struct {
@@ -84,6 +84,13 @@ type IngressComponentSpecNginx struct {
 	//	Method of install nginx ingress controller.  One of: deployment | daemonset.
 	InstallType string `json:"installType,omitempty"`
 
+	// +kubebuilder:default=true
+	// +kubebuilder:validation:Optional
+	// (Default: true)
+	//
+	//	Determines whether nginx project is included at installation time.
+	Include bool `json:"include,omitempty"`
+
 	// +kubebuilder:default="nginx/nginx-ingress"
 	// +kubebuilder:validation:Optional
 	// (Default: "nginx/nginx-ingress")
@@ -106,26 +113,14 @@ type IngressComponentSpecNginx struct {
 	Replicas int `json:"replicas,omitempty"`
 }
 
-type IngressComponentSpecExternalDNS struct {
-	// +kubebuilder:validation:Required
-	Provider string `json:"provider,omitempty"`
-
-	// +kubebuilder:default="k8s.gcr.io/external-dns/external-dns"
-	// +kubebuilder:validation:Optional
-	// (Default: "k8s.gcr.io/external-dns/external-dns")
-	//
-	//	Image repo and name to use for external-dns.
-	Image string `json:"image,omitempty"`
-
-	// +kubebuilder:default="v0.12.2"
-	// +kubebuilder:validation:Optional
-	// (Default: "v0.12.2")
-	//
-	//	Version of external-dns to use.
-	Version string `json:"version,omitempty"`
-}
-
 type IngressComponentSpecKong struct {
+	// +kubebuilder:default=false
+	// +kubebuilder:validation:Optional
+	// (Default: false)
+	//
+	//	Determines whether nginx project is included at installation time.
+	Include bool `json:"include,omitempty"`
+
 	// +kubebuilder:default=2
 	// +kubebuilder:validation:Optional
 	// (Default: 2)
@@ -169,6 +164,31 @@ type IngressComponentSpecKongIngressController struct {
 	// (Default: "2.5.0")
 	//
 	//	Version of kong ingress controller to use.
+	Version string `json:"version,omitempty"`
+}
+
+type IngressComponentSpecExternalDNS struct {
+	// +kubebuilder:default="none"
+	// +kubebuilder:validation:Optional
+	// (Default: "none")
+	//
+	//	+kubebuilder:validation:Enum=none;active-directory;google;route53
+	//	DNS provider.  One of: none | active-directory | google | route53.
+	//	If "none" external DNS will not be installed.
+	Provider string `json:"provider,omitempty"`
+
+	// +kubebuilder:default="k8s.gcr.io/external-dns/external-dns"
+	// +kubebuilder:validation:Optional
+	// (Default: "k8s.gcr.io/external-dns/external-dns")
+	//
+	//	Image repo and name to use for external-dns.
+	Image string `json:"image,omitempty"`
+
+	// +kubebuilder:default="v0.12.2"
+	// +kubebuilder:validation:Optional
+	// (Default: "v0.12.2")
+	//
+	//	Version of external-dns to use.
 	Version string `json:"version,omitempty"`
 }
 

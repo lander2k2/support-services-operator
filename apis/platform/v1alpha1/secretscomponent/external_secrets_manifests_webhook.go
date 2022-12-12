@@ -36,15 +36,21 @@ func CreateValidatingWebhookSecretstoreValidate(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "admissionregistration.k8s.io/v1",
 			"kind":       "ValidatingWebhookConfiguration",
 			"metadata": map[string]interface{}{
 				"name": "secretstore-validate",
 				"labels": map[string]interface{}{
 					"external-secrets.io/component": "webhook",
-					"platform.nukleros.io/group":    "secrets",
+					"platform.nukleros.io/category": "secrets",
 					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
@@ -135,15 +141,21 @@ func CreateValidatingWebhookExternalsecretValidate(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "admissionregistration.k8s.io/v1",
 			"kind":       "ValidatingWebhookConfiguration",
 			"metadata": map[string]interface{}{
 				"name": "externalsecret-validate",
 				"labels": map[string]interface{}{
 					"external-secrets.io/component": "webhook",
-					"platform.nukleros.io/group":    "secrets",
+					"platform.nukleros.io/category": "secrets",
 					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},

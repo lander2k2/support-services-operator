@@ -36,9 +36,11 @@ func CreateSecretNamespaceExternalDnsRoute53(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	if parent.Spec.ExternalDNS.Provider != "route53" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// +operator-builder:resource:field=externalDNS.provider,value="route53",include
@@ -48,8 +50,8 @@ func CreateSecretNamespaceExternalDnsRoute53(
 				"name":      "external-dns-route53",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 			},
 			"stringData": map[string]interface{}{

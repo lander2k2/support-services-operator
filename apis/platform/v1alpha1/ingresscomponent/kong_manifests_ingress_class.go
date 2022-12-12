@@ -36,15 +36,21 @@ func CreateIngressClassKong(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "networking.k8s.io/v1",
 			"kind":       "IngressClass",
 			"metadata": map[string]interface{}{
 				"name": "kong",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{

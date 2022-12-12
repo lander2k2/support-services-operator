@@ -1,7 +1,7 @@
 ---
-# +operator-builder:field:name=tier,arbitrary,default="development",type=string,description=`
-# +kubebuilder:validation:Enum=development;staging;production
-# The tier of cluster being used.  One of: development | staging | production.`
+# +operator-builder:field:name=tier,arbitrary,default="local",type=string,description=`
+# +kubebuilder:validation:Enum=local;development;production
+# The tier of cluster being used.  One of: local | development | production.`
 apiVersion: v1
 kind: Namespace
 metadata:

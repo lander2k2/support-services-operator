@@ -36,8 +36,14 @@ func CreateSecretNamespaceExternalSecretsWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "Secret",
 			"metadata": map[string]interface{}{
@@ -48,7 +54,7 @@ func CreateSecretNamespaceExternalSecretsWebhook(
 					"app.kubernetes.io/instance":    "external-secrets",
 					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
 					"external-secrets.io/component": "webhook",
-					"platform.nukleros.io/group":    "secrets",
+					"platform.nukleros.io/category": "secrets",
 					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},

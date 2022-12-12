@@ -36,9 +36,11 @@ func CreateSecretNamespaceExternalDnsActiveDirectory(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	if parent.Spec.ExternalDNS.Provider != "active-directory" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// +operator-builder:resource:field=externalDNS.provider,value="active-directory",include
@@ -48,8 +50,8 @@ func CreateSecretNamespaceExternalDnsActiveDirectory(
 				"name":      "external-dns-active-directory",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 			},
 			"stringData": map[string]interface{}{
@@ -82,9 +84,11 @@ func CreateConfigMapNamespaceExternalDnsActiveDirectoryKerberos(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	if parent.Spec.ExternalDNS.Provider != "active-directory" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// +operator-builder:resource:field=externalDNS.provider,value="active-directory",include
@@ -94,8 +98,8 @@ func CreateConfigMapNamespaceExternalDnsActiveDirectoryKerberos(
 				"name":      "external-dns-active-directory-kerberos",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 			},
 			"data": map[string]interface{}{

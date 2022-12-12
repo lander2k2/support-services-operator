@@ -1,4 +1,5 @@
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,7 +9,7 @@ metadata:
   name: kong-proxy
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 spec:
   ports:
@@ -24,13 +25,14 @@ spec:
     app: ingress-kong
   type: LoadBalancer
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: v1
 kind: Service
 metadata:
   name: kong-validation-webhook
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 spec:
   ports:

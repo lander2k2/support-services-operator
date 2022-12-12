@@ -36,12 +36,12 @@ spec:
             description: SupportServicesSpec defines the desired state of SupportServices.
             properties:
               tier:
-                default: development
-                description: "(Default: \"development\") \n The tier of cluster being
-                  used.  One of: development | staging | production."
+                default: local
+                description: "(Default: \"local\") \n The tier of cluster being used.
+                  \ One of: local | development | production."
                 enum:
+                - local
                 - development
-                - staging
                 - production
                 type: string
             type: object

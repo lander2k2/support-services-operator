@@ -36,6 +36,7 @@ func CreateServiceAccountNamespaceCertManagerCainjector(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion":                   "v1",
@@ -45,13 +46,13 @@ func CreateServiceAccountNamespaceCertManagerCainjector(
 				"name":      "cert-manager-cainjector",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cainjector",
-					"app.kubernetes.io/name":       "cainjector",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cainjector",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cainjector",
+					"app.kubernetes.io/name":        "cainjector",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cainjector",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 		},
@@ -69,6 +70,7 @@ func CreateServiceAccountNamespaceCertManager(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion":                   "v1",
@@ -78,13 +80,13 @@ func CreateServiceAccountNamespaceCertManager(
 				"name":      "cert-manager",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 		},
@@ -102,6 +104,7 @@ func CreateServiceAccountNamespaceCertManagerWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion":                   "v1",
@@ -111,13 +114,13 @@ func CreateServiceAccountNamespaceCertManagerWebhook(
 				"name":      "cert-manager-webhook",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 		},
@@ -142,6 +145,7 @@ func CreateClusterRoleCertManagerCainjector(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -149,13 +153,13 @@ func CreateClusterRoleCertManagerCainjector(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-cainjector",
 				"labels": map[string]interface{}{
-					"app":                          "cainjector",
-					"app.kubernetes.io/name":       "cainjector",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cainjector",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cainjector",
+					"app.kubernetes.io/name":        "cainjector",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cainjector",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -262,6 +266,7 @@ func CreateClusterRoleCertManagerControllerIssuers(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -269,13 +274,13 @@ func CreateClusterRoleCertManagerControllerIssuers(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-issuers",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -353,6 +358,7 @@ func CreateClusterRoleCertManagerControllerClusterissuers(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -360,13 +366,13 @@ func CreateClusterRoleCertManagerControllerClusterissuers(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-clusterissuers",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -451,6 +457,7 @@ func CreateClusterRoleCertManagerControllerCertificates(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -458,13 +465,13 @@ func CreateClusterRoleCertManagerControllerCertificates(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-certificates",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -579,6 +586,7 @@ func CreateClusterRoleCertManagerControllerOrders(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -586,13 +594,13 @@ func CreateClusterRoleCertManagerControllerOrders(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-orders",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -713,6 +721,7 @@ func CreateClusterRoleCertManagerControllerChallenges(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -720,13 +729,13 @@ func CreateClusterRoleCertManagerControllerChallenges(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-challenges",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -905,6 +914,7 @@ func CreateClusterRoleCertManagerControllerIngressShim(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -912,13 +922,13 @@ func CreateClusterRoleCertManagerControllerIngressShim(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-ingress-shim",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1035,6 +1045,7 @@ func CreateClusterRoleCertManagerView(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1050,7 +1061,7 @@ func CreateClusterRoleCertManagerView(
 					"rbac.authorization.k8s.io/aggregate-to-view":  "true",
 					"rbac.authorization.k8s.io/aggregate-to-edit":  "true",
 					"rbac.authorization.k8s.io/aggregate-to-admin": "true",
-					"platform.nukleros.io/group":                   "certificates",
+					"platform.nukleros.io/category":                "certificates",
 					"platform.nukleros.io/project":                 "cert-manager",
 				},
 			},
@@ -1106,6 +1117,7 @@ func CreateClusterRoleCertManagerEdit(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1120,7 +1132,7 @@ func CreateClusterRoleCertManagerEdit(
 					"app.kubernetes.io/version":                    "v1.9.1",
 					"rbac.authorization.k8s.io/aggregate-to-edit":  "true",
 					"rbac.authorization.k8s.io/aggregate-to-admin": "true",
-					"platform.nukleros.io/group":                   "certificates",
+					"platform.nukleros.io/category":                "certificates",
 					"platform.nukleros.io/project":                 "cert-manager",
 				},
 			},
@@ -1186,6 +1198,7 @@ func CreateClusterRoleCertManagerControllerApproveCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1193,13 +1206,13 @@ func CreateClusterRoleCertManagerControllerApproveCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-approve:cert-manager-io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1238,6 +1251,7 @@ func CreateClusterRoleCertManagerControllerCertificatesigningrequests(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1245,13 +1259,13 @@ func CreateClusterRoleCertManagerControllerCertificatesigningrequests(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-certificatesigningrequests",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1324,6 +1338,7 @@ func CreateClusterRoleCertManagerWebhookSubjectaccessreviews(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1331,13 +1346,13 @@ func CreateClusterRoleCertManagerWebhookSubjectaccessreviews(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-webhook:subjectaccessreviews",
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1368,6 +1383,7 @@ func CreateClusterRoleBindingCertManagerCainjector(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1375,13 +1391,13 @@ func CreateClusterRoleBindingCertManagerCainjector(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-cainjector",
 				"labels": map[string]interface{}{
-					"app":                          "cainjector",
-					"app.kubernetes.io/name":       "cainjector",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cainjector",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cainjector",
+					"app.kubernetes.io/name":        "cainjector",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cainjector",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1411,6 +1427,7 @@ func CreateClusterRoleBindingCertManagerControllerIssuers(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1418,13 +1435,13 @@ func CreateClusterRoleBindingCertManagerControllerIssuers(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-issuers",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1454,6 +1471,7 @@ func CreateClusterRoleBindingCertManagerControllerClusterissuers(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1461,13 +1479,13 @@ func CreateClusterRoleBindingCertManagerControllerClusterissuers(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-clusterissuers",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1497,6 +1515,7 @@ func CreateClusterRoleBindingCertManagerControllerCertificates(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1504,13 +1523,13 @@ func CreateClusterRoleBindingCertManagerControllerCertificates(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-certificates",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1540,6 +1559,7 @@ func CreateClusterRoleBindingCertManagerControllerOrders(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1547,13 +1567,13 @@ func CreateClusterRoleBindingCertManagerControllerOrders(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-orders",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1583,6 +1603,7 @@ func CreateClusterRoleBindingCertManagerControllerChallenges(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1590,13 +1611,13 @@ func CreateClusterRoleBindingCertManagerControllerChallenges(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-challenges",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1626,6 +1647,7 @@ func CreateClusterRoleBindingCertManagerControllerIngressShim(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1633,13 +1655,13 @@ func CreateClusterRoleBindingCertManagerControllerIngressShim(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-ingress-shim",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1669,6 +1691,7 @@ func CreateClusterRoleBindingCertManagerControllerApproveCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1676,13 +1699,13 @@ func CreateClusterRoleBindingCertManagerControllerApproveCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-approve:cert-manager-io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1712,6 +1735,7 @@ func CreateClusterRoleBindingCertManagerControllerCertificatesigningrequests(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1719,13 +1743,13 @@ func CreateClusterRoleBindingCertManagerControllerCertificatesigningrequests(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-controller-certificatesigningrequests",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1755,6 +1779,7 @@ func CreateClusterRoleBindingCertManagerWebhookSubjectaccessreviews(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1762,13 +1787,13 @@ func CreateClusterRoleBindingCertManagerWebhookSubjectaccessreviews(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-webhook:subjectaccessreviews",
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -1800,6 +1825,7 @@ func CreateRoleNamespaceCertManagerCainjectorLeaderelection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1808,13 +1834,13 @@ func CreateRoleNamespaceCertManagerCainjectorLeaderelection(
 				"name":      "cert-manager-cainjector:leaderelection",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cainjector",
-					"app.kubernetes.io/name":       "cainjector",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cainjector",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cainjector",
+					"app.kubernetes.io/name":        "cainjector",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cainjector",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1863,6 +1889,7 @@ func CreateRoleNamespaceCertManagerLeaderelection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1871,13 +1898,13 @@ func CreateRoleNamespaceCertManagerLeaderelection(
 				"name":      "cert-manager:leaderelection",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1925,6 +1952,7 @@ func CreateRoleNamespaceCertManagerWebhookDynamicServing(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1933,13 +1961,13 @@ func CreateRoleNamespaceCertManagerWebhookDynamicServing(
 				"name":      "cert-manager-webhook:dynamic-serving",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"rules": []interface{}{
@@ -1987,6 +2015,7 @@ func CreateRoleBindingNamespaceCertManagerCainjectorLeaderelection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -1995,13 +2024,13 @@ func CreateRoleBindingNamespaceCertManagerCainjectorLeaderelection(
 				"name":      "cert-manager-cainjector:leaderelection",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cainjector",
-					"app.kubernetes.io/name":       "cainjector",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cainjector",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cainjector",
+					"app.kubernetes.io/name":        "cainjector",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cainjector",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -2031,6 +2060,7 @@ func CreateRoleBindingNamespaceCertManagerLeaderelection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -2039,13 +2069,13 @@ func CreateRoleBindingNamespaceCertManagerLeaderelection(
 				"name":      "cert-manager:leaderelection",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -2076,6 +2106,7 @@ func CreateRoleBindingNamespaceCertManagerWebhookDynamicServing(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -2084,13 +2115,13 @@ func CreateRoleBindingNamespaceCertManagerWebhookDynamicServing(
 				"name":      "cert-manager-webhook:dynamic-serving",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"roleRef": map[string]interface{}{

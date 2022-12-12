@@ -27,6 +27,50 @@ import (
 	setupv1alpha1 "github.com/nukleros/support-services-operator/apis/setup/v1alpha1"
 )
 
+// +kubebuilder:rbac:groups=rbac.authorization.k8s.io,resources=clusterrolebindings,verbs=get;list;watch;create;update;patch;delete
+
+// CreateClusterRoleBindingExternalDnsViewer creates the ClusterRoleBinding resource with name external-dns-viewer.
+func CreateClusterRoleBindingExternalDnsViewer(
+	parent *platformv1alpha1.IngressComponent,
+	collection *setupv1alpha1.SupportServices,
+	reconciler workload.Reconciler,
+	req *workload.Request,
+) ([]client.Object, error) {
+
+	if parent.Spec.ExternalDNS.Provider == "none" {
+		return []client.Object{}, nil
+	}
+
+	var resourceObj = &unstructured.Unstructured{
+		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalDNS.provider,value="none",include=false
+			"apiVersion": "rbac.authorization.k8s.io/v1",
+			"kind":       "ClusterRoleBinding",
+			"metadata": map[string]interface{}{
+				"name": "external-dns-viewer",
+				"labels": map[string]interface{}{
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
+				},
+			},
+			"roleRef": map[string]interface{}{
+				"apiGroup": "rbac.authorization.k8s.io",
+				"kind":     "ClusterRole",
+				"name":     "external-dns",
+			},
+			"subjects": []interface{}{
+				map[string]interface{}{
+					"kind":      "ServiceAccount",
+					"name":      "external-dns",
+					"namespace": parent.Spec.Namespace, //  controlled by field: namespace
+				},
+			},
+		},
+	}
+
+	return mutate.MutateClusterRoleBindingExternalDnsViewer(resourceObj, parent, collection, reconciler, req)
+}
+
 // +kubebuilder:rbac:groups=core,resources=serviceaccounts,verbs=get;list;watch;create;update;patch;delete
 
 // CreateServiceAccountNamespaceExternalDns creates the ServiceAccount resource with name external-dns.
@@ -36,15 +80,21 @@ func CreateServiceAccountNamespaceExternalDns(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalDNS.Provider == "none" {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalDNS.provider,value="none",include=false
 			"apiVersion": "v1",
 			"kind":       "ServiceAccount",
 			"metadata": map[string]interface{}{
 				"name": "external-dns",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 			},
@@ -69,15 +119,21 @@ func CreateClusterRoleNamespaceExternalDns(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalDNS.Provider == "none" {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalDNS.provider,value="none",include=false
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
 				"name": "external-dns",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 			},
@@ -140,42 +196,4 @@ func CreateClusterRoleNamespaceExternalDns(
 	}
 
 	return mutate.MutateClusterRoleNamespaceExternalDns(resourceObj, parent, collection, reconciler, req)
-}
-
-// +kubebuilder:rbac:groups=rbac.authorization.k8s.io,resources=clusterrolebindings,verbs=get;list;watch;create;update;patch;delete
-
-// CreateClusterRoleBindingExternalDnsViewer creates the ClusterRoleBinding resource with name external-dns-viewer.
-func CreateClusterRoleBindingExternalDnsViewer(
-	parent *platformv1alpha1.IngressComponent,
-	collection *setupv1alpha1.SupportServices,
-	reconciler workload.Reconciler,
-	req *workload.Request,
-) ([]client.Object, error) {
-	var resourceObj = &unstructured.Unstructured{
-		Object: map[string]interface{}{
-			"apiVersion": "rbac.authorization.k8s.io/v1",
-			"kind":       "ClusterRoleBinding",
-			"metadata": map[string]interface{}{
-				"name": "external-dns-viewer",
-				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
-				},
-			},
-			"roleRef": map[string]interface{}{
-				"apiGroup": "rbac.authorization.k8s.io",
-				"kind":     "ClusterRole",
-				"name":     "external-dns",
-			},
-			"subjects": []interface{}{
-				map[string]interface{}{
-					"kind":      "ServiceAccount",
-					"name":      "external-dns",
-					"namespace": parent.Spec.Namespace, //  controlled by field: namespace
-				},
-			},
-		},
-	}
-
-	return mutate.MutateClusterRoleBindingExternalDnsViewer(resourceObj, parent, collection, reconciler, req)
 }

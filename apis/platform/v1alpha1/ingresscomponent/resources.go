@@ -39,16 +39,12 @@ spec:
     #namespace: ""
   nginx:
     installType: "deployment"
+    include: true
     image: "nginx/nginx-ingress"
     version: "2.3.0"
     replicas: 2
-  namespace: "nukleros-ingress-system"
-  externalDNS:
-    provider: "none"
-    image: "k8s.gcr.io/external-dns/external-dns"
-    version: "v0.12.2"
-  domainName: "nukleros.io"
   kong:
+    include: false
     replicas: 2
     gateway:
       image: "kong/kong-gateway"
@@ -56,6 +52,12 @@ spec:
     ingressController:
       image: "kong/kubernetes-ingress-controller"
       version: "2.5.0"
+  externalDNS:
+    provider: "none"
+    image: "k8s.gcr.io/external-dns/external-dns"
+    version: "v0.12.2"
+  namespace: "nukleros-ingress-system"
+  domainName: "nukleros.io"
 `
 
 // sampleIngressComponentRequired is a sample containing only required fields
@@ -67,8 +69,6 @@ spec:
   #collection:
     #name: "supportservices-sample"
     #namespace: ""
-  externalDNS:
-    provider: "none"
   domainName: "nukleros.io"
 `
 
@@ -145,18 +145,19 @@ var CreateFuncs = []func(
 	CreateDeploymentNamespaceExternalDnsActiveDirectory,
 	CreateDeploymentNamespaceExternalDnsGoogle,
 	CreateDeploymentNamespaceExternalDnsRoute53,
+	CreateClusterRoleBindingExternalDnsViewer,
 	CreateServiceAccountNamespaceExternalDns,
 	CreateClusterRoleNamespaceExternalDns,
-	CreateClusterRoleBindingExternalDnsViewer,
+	CreateCertNamespaceNginxDefaultServerSecretLocal,
 	CreateCertNamespaceNginxDefaultServerSecretNonProd,
 	CreateCertNamespaceNginxDefaultServerSecretProd,
 	CreateConfigMapNamespaceNginxConfig,
 	CreateCRDDnsendpointsExternaldnsNginxOrg,
+	CreateCRDVirtualserverroutesK8sNginxOrg,
 	CreateCRDTransportserversK8sNginxOrg,
 	CreateCRDPoliciesK8sNginxOrg,
-	CreateCRDVirtualserverroutesK8sNginxOrg,
-	CreateCRDGlobalconfigurationsK8sNginxOrg,
 	CreateCRDVirtualserversK8sNginxOrg,
+	CreateCRDGlobalconfigurationsK8sNginxOrg,
 	CreateDaemonSetNamespaceNginxIngress,
 	CreateDeploymentNamespaceNginxIngress,
 	CreateIngressClassNginx,
@@ -197,11 +198,11 @@ var InitFuncs = []func(
 	*workload.Request,
 ) ([]client.Object, error){
 	CreateCRDDnsendpointsExternaldnsNginxOrg,
+	CreateCRDVirtualserverroutesK8sNginxOrg,
 	CreateCRDTransportserversK8sNginxOrg,
 	CreateCRDPoliciesK8sNginxOrg,
-	CreateCRDVirtualserverroutesK8sNginxOrg,
-	CreateCRDGlobalconfigurationsK8sNginxOrg,
 	CreateCRDVirtualserversK8sNginxOrg,
+	CreateCRDGlobalconfigurationsK8sNginxOrg,
 	CreateCRDKongclusterpluginsConfigurationKonghqCom,
 	CreateCRDKongconsumersConfigurationKonghqCom,
 	CreateCRDKongingressesConfigurationKonghqCom,

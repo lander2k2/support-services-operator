@@ -1,4 +1,5 @@
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,7 +9,7 @@ metadata:
     service.beta.kubernetes.io/aws-load-balancer-backend-protocol: tcp
     service.beta.kubernetes.io/aws-load-balancer-proxy-protocol: '*'
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: nginx-ingress-controller
 spec:
   type: LoadBalancer

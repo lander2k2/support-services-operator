@@ -29,6 +29,112 @@ import (
 
 // +kubebuilder:rbac:groups=cert-manager.io,resources=clusterissuers,verbs=get;list;watch;create;update;patch;delete
 
+// CreateClusterIssuerNuklerosLocalSelfSignedRoot creates the ClusterIssuer resource with name nukleros-local-self-signed-root.
+func CreateClusterIssuerNuklerosLocalSelfSignedRoot(
+	parent *platformv1alpha1.CertificatesComponent,
+	collection *setupv1alpha1.SupportServices,
+	reconciler workload.Reconciler,
+	req *workload.Request,
+) ([]client.Object, error) {
+
+	if collection.Spec.Tier != "local" {
+		return []client.Object{}, nil
+	}
+
+	var resourceObj = &unstructured.Unstructured{
+		Object: map[string]interface{}{
+			// +operator-builder:resource:collectionField=tier,value="local",include
+			"apiVersion": "cert-manager.io/v1",
+			"kind":       "ClusterIssuer",
+			"metadata": map[string]interface{}{
+				"name": "nukleros-local-self-signed-root",
+			},
+			"spec": map[string]interface{}{
+				"selfSigned": map[string]interface{}{},
+			},
+		},
+	}
+
+	return mutate.MutateClusterIssuerNuklerosLocalSelfSignedRoot(resourceObj, parent, collection, reconciler, req)
+}
+
+// +kubebuilder:rbac:groups=cert-manager.io,resources=certificates,verbs=get;list;watch;create;update;patch;delete
+
+// CreateCertNamespaceNuklerosLocalSelfSignedCa creates the Certificate resource with name nukleros-local-self-signed-ca.
+func CreateCertNamespaceNuklerosLocalSelfSignedCa(
+	parent *platformv1alpha1.CertificatesComponent,
+	collection *setupv1alpha1.SupportServices,
+	reconciler workload.Reconciler,
+	req *workload.Request,
+) ([]client.Object, error) {
+
+	if collection.Spec.Tier != "local" {
+		return []client.Object{}, nil
+	}
+
+	var resourceObj = &unstructured.Unstructured{
+		Object: map[string]interface{}{
+			// +operator-builder:resource:collectionField=tier,value="local",include
+			"apiVersion": "cert-manager.io/v1",
+			"kind":       "Certificate",
+			"metadata": map[string]interface{}{
+				"name":      "nukleros-local-self-signed-ca",
+				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
+			},
+			"spec": map[string]interface{}{
+				"isCA":       true,
+				"commonName": "nukleros-local-ca",
+				"secretName": "nukleros-local-ca",
+				"privateKey": map[string]interface{}{
+					"algorithm": "ECDSA",
+					"size":      256,
+				},
+				"issuerRef": map[string]interface{}{
+					"name": "nukleros-local-self-signed-root",
+					"kind": "ClusterIssuer",
+				},
+			},
+		},
+	}
+
+	return mutate.MutateCertNamespaceNuklerosLocalSelfSignedCa(resourceObj, parent, collection, reconciler, req)
+}
+
+// +kubebuilder:rbac:groups=cert-manager.io,resources=clusterissuers,verbs=get;list;watch;create;update;patch;delete
+
+// CreateClusterIssuerNuklerosLocalSelfSigned creates the ClusterIssuer resource with name nukleros-local-self-signed.
+func CreateClusterIssuerNuklerosLocalSelfSigned(
+	parent *platformv1alpha1.CertificatesComponent,
+	collection *setupv1alpha1.SupportServices,
+	reconciler workload.Reconciler,
+	req *workload.Request,
+) ([]client.Object, error) {
+
+	if collection.Spec.Tier != "local" {
+		return []client.Object{}, nil
+	}
+
+	var resourceObj = &unstructured.Unstructured{
+		Object: map[string]interface{}{
+			// +operator-builder:resource:collectionField=tier,value="local",include
+			"apiVersion": "cert-manager.io/v1",
+			"kind":       "ClusterIssuer",
+			"metadata": map[string]interface{}{
+				"name": "nukleros-local-self-signed",
+			},
+			"spec": map[string]interface{}{
+				"ca": map[string]interface{}{
+					"secretName": "nukleros-local-ca",
+				},
+			},
+		},
+	}
+
+	return mutate.MutateClusterIssuerNuklerosLocalSelfSigned(resourceObj, parent, collection, reconciler, req)
+}
+
+// +kubebuilder:rbac:groups=cert-manager.io,resources=clusterissuers,verbs=get;list;watch;create;update;patch;delete
+
 // CreateClusterIssuerLetsencryptStaging creates the ClusterIssuer resource with name letsencrypt-staging.
 func CreateClusterIssuerLetsencryptStaging(
 	parent *platformv1alpha1.CertificatesComponent,
@@ -36,12 +142,14 @@ func CreateClusterIssuerLetsencryptStaging(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
-	if collection.Spec.Tier == "production" {
+
+	if collection.Spec.Tier != "development" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
-			// +operator-builder:resource:collectionField=tier,value="production",include=false
+			// +operator-builder:resource:collectionField=tier,value="development",include
 			"apiVersion": "cert-manager.io/v1",
 			"kind":       "ClusterIssuer",
 			"metadata": map[string]interface{}{
@@ -94,9 +202,11 @@ func CreateClusterIssuerLetsencryptProduction(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	if collection.Spec.Tier != "production" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// +operator-builder:resource:collectionField=tier,value="production",include

@@ -43,18 +43,18 @@ type SecretsComponentSpec struct {
 	// if not exactly one collection is found.
 	Collection SecretsComponentCollectionSpec `json:"collection"`
 
+	// +kubebuilder:validation:Optional
+	ExternalSecrets SecretsComponentSpecExternalSecrets `json:"externalSecrets,omitempty"`
+
+	// +kubebuilder:validation:Optional
+	Reloader SecretsComponentSpecReloader `json:"reloader,omitempty"`
+
 	// +kubebuilder:default="nukleros-secrets-system"
 	// +kubebuilder:validation:Optional
 	// (Default: "nukleros-secrets-system")
 	//
 	//	Namespace to use for secrets support services.
 	Namespace string `json:"namespace,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	ExternalSecrets SecretsComponentSpecExternalSecrets `json:"externalSecrets,omitempty"`
-
-	// +kubebuilder:validation:Optional
-	Reloader SecretsComponentSpecReloader `json:"reloader,omitempty"`
 }
 
 type SecretsComponentCollectionSpec struct {
@@ -70,6 +70,13 @@ type SecretsComponentCollectionSpec struct {
 }
 
 type SecretsComponentSpecExternalSecrets struct {
+	// +kubebuilder:default=true
+	// +kubebuilder:validation:Optional
+	// (Default: true)
+	//
+	//	Determines whether external secrets project is included at installation time.
+	Include bool `json:"include,omitempty"`
+
 	// +kubebuilder:default="v0.5.9"
 	// +kubebuilder:validation:Optional
 	// (Default: "v0.5.9")
@@ -122,6 +129,13 @@ type SecretsComponentSpecExternalSecretsWebhook struct {
 }
 
 type SecretsComponentSpecReloader struct {
+	// +kubebuilder:default=true
+	// +kubebuilder:validation:Optional
+	// (Default: true)
+	//
+	//	Determines whether reloader project is included at installation time.
+	Include bool `json:"include,omitempty"`
+
 	// +kubebuilder:default=1
 	// +kubebuilder:validation:Optional
 	// (Default: 1)

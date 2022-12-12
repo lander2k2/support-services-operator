@@ -36,16 +36,22 @@ func CreateDeploymentNamespaceIngressKong(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apps/v1",
 			"kind":       "Deployment",
 			"metadata": map[string]interface{}{
 				"labels": map[string]interface{}{
-					"app":                          "ingress-kong",
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
-					"app.kubernetes.io/name":       "kong-ingress",
+					"app":                           "ingress-kong",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
+					"app.kubernetes.io/name":        "kong-ingress",
 				},
 				"name":      "ingress-kong",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
@@ -67,9 +73,9 @@ func CreateDeploymentNamespaceIngressKong(
 							"traffic.sidecar.istio.io/includeInboundPorts": "",
 						},
 						"labels": map[string]interface{}{
-							"app":                          "ingress-kong",
-							"platform.nukleros.io/group":   "ingress",
-							"platform.nukleros.io/project": "kong-ingress-controller",
+							"app":                           "ingress-kong",
+							"platform.nukleros.io/category": "ingress",
+							"platform.nukleros.io/project":  "kong-ingress-controller",
 						},
 					},
 					"spec": map[string]interface{}{

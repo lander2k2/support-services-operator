@@ -17,6 +17,8 @@ limitations under the License.
 package ingresscomponent
 
 import (
+	"fmt"
+
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
@@ -36,11 +38,21 @@ func CreateDeploymentNamespaceNginxIngress(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	fmt.Println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+	fmt.Printf("%+v\n", parent.Spec)
+
+	if parent.Spec.Nginx.Include != true {
+		return []client.Object{}, nil
+	}
+
 	if parent.Spec.Nginx.InstallType != "deployment" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=nginx.include,value=true,include
 			// +operator-builder:resource:field=nginx.installType,value="deployment",include
 			"apiVersion": "apps/v1",
 			"kind":       "Deployment",
@@ -48,9 +60,9 @@ func CreateDeploymentNamespaceNginxIngress(
 				"name":      "nginx-ingress",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "nginx-ingress-controller",
-					"app.kubernetes.io/name":       "nginx-ingress",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "nginx-ingress-controller",
+					"app.kubernetes.io/name":        "nginx-ingress",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -65,10 +77,10 @@ func CreateDeploymentNamespaceNginxIngress(
 				"template": map[string]interface{}{
 					"metadata": map[string]interface{}{
 						"labels": map[string]interface{}{
-							"app":                          "nginx-ingress",
-							"platform.nukleros.io/group":   "ingress",
-							"platform.nukleros.io/project": "nginx-ingress-controller",
-							"app.kubernetes.io/name":       "nginx-ingress",
+							"app":                           "nginx-ingress",
+							"platform.nukleros.io/category": "ingress",
+							"platform.nukleros.io/project":  "nginx-ingress-controller",
+							"app.kubernetes.io/name":        "nginx-ingress",
 						},
 						"annotations": map[string]interface{}{
 							"prometheus.io/scrape": "true",

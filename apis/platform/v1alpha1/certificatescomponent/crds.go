@@ -36,6 +36,7 @@ func CreateCRDCertificaterequestsCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apiextensions.k8s.io/v1",
@@ -43,12 +44,12 @@ func CreateCRDCertificaterequestsCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "certificaterequests.cert-manager.io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -324,6 +325,7 @@ func CreateCRDCertificatesCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apiextensions.k8s.io/v1",
@@ -331,12 +333,12 @@ func CreateCRDCertificatesCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "certificates.cert-manager.io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -852,6 +854,7 @@ func CreateCRDChallengesAcmeCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apiextensions.k8s.io/v1",
@@ -859,12 +862,12 @@ func CreateCRDChallengesAcmeCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "challenges.acme.cert-manager.io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -2336,6 +2339,7 @@ func CreateCRDClusterissuersCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apiextensions.k8s.io/v1",
@@ -2343,12 +2347,12 @@ func CreateCRDClusterissuersCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "clusterissuers.cert-manager.io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -4123,6 +4127,7 @@ func CreateCRDIssuersCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apiextensions.k8s.io/v1",
@@ -4130,12 +4135,12 @@ func CreateCRDIssuersCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "issuers.cert-manager.io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -5910,6 +5915,7 @@ func CreateCRDOrdersAcmeCertManagerIo(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apiextensions.k8s.io/v1",
@@ -5917,12 +5923,12 @@ func CreateCRDOrdersAcmeCertManagerIo(
 			"metadata": map[string]interface{}{
 				"name": "orders.acme.cert-manager.io",
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{

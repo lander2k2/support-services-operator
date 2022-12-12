@@ -113,4 +113,34 @@ yamlFiles:
   - name: "external-dns rbac"
     path: "../vendor/rbac.yaml"
     outputPath: "manifests/rbac.yaml"
+    overlays:
+      - name: "add include marker on service account for external DNS project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ServiceAccount
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalDNS.provider,value="none",include=false
+          apiVersion: v1
+
+      - name: "add include marker on cluster role for external DNS project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ClusterRole
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalDNS.provider,value="none",include=false
+          apiVersion: rbac.authorization.k8s.io/v1
+
+      - name: "add include marker on cluster role binding for external DNS project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ClusterRoleBinding
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalDNS.provider,value="none",include=false
+          apiVersion: rbac.authorization.k8s.io/v1
 

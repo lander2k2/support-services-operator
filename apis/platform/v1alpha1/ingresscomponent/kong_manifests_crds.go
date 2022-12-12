@@ -36,8 +36,14 @@ func CreateCRDKongclusterpluginsConfigurationKonghqCom(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -46,8 +52,8 @@ func CreateCRDKongclusterpluginsConfigurationKonghqCom(
 				},
 				"name": "kongclusterplugins.configuration.konghq.com",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -220,8 +226,14 @@ func CreateCRDKongconsumersConfigurationKonghqCom(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -230,8 +242,8 @@ func CreateCRDKongconsumersConfigurationKonghqCom(
 				},
 				"name": "kongconsumers.configuration.konghq.com",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -331,8 +343,14 @@ func CreateCRDKongingressesConfigurationKonghqCom(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -341,8 +359,8 @@ func CreateCRDKongingressesConfigurationKonghqCom(
 				},
 				"name": "kongingresses.configuration.konghq.com",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -724,8 +742,14 @@ func CreateCRDKongpluginsConfigurationKonghqCom(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -734,8 +758,8 @@ func CreateCRDKongpluginsConfigurationKonghqCom(
 				},
 				"name": "kongplugins.configuration.konghq.com",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -903,8 +927,14 @@ func CreateCRDTcpingressesConfigurationKonghqCom(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -913,8 +943,8 @@ func CreateCRDTcpingressesConfigurationKonghqCom(
 				},
 				"name": "tcpingresses.configuration.konghq.com",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -1128,8 +1158,14 @@ func CreateCRDUdpingressesConfigurationKonghqCom(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "apiextensions.k8s.io/v1",
 			"kind":       "CustomResourceDefinition",
 			"metadata": map[string]interface{}{
@@ -1138,8 +1174,8 @@ func CreateCRDUdpingressesConfigurationKonghqCom(
 				},
 				"name": "udpingresses.configuration.konghq.com",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{

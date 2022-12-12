@@ -6,7 +6,7 @@ metadata:
   name: external-dns-google
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: external-dns
 stringData:
   EXTERNAL_DNS_TXT_OWNER_ID: external-dns-

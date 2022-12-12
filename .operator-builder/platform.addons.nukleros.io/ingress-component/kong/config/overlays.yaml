@@ -9,6 +9,12 @@ yamlFiles:
   - name: "kong crds"
     path: "../vendor/crds.yaml"
     outputPath: "manifests/crds.yaml"
+    overlays:
+      - name: "add include marker for kong project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=kong.include,value=true,include
+          apiVersion: apiextensions.k8s.io/v1
 
   - name: "kong deployment"
     path: "../vendor/deployment.yaml"
@@ -40,15 +46,62 @@ yamlFiles:
             # Number of replicas to use for the kong ingress deployment.`
             replicas: !!int "%v"
 
+      - name: "add include marker for kong project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=kong.include,value=true,include
+          apiVersion: apps/v1
+
   - name: "kong ingress class"
     path: "../vendor/ingress-class.yaml"
     outputPath: "manifests/ingress-class.yaml"
+    overlays:
+      - name: "add include marker for kong project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=kong.include,value=true,include
+          apiVersion: networking.k8s.io/v1
 
   - name: "kong rbac"
     path: "../vendor/rbac.yaml"
     outputPath: "manifests/rbac.yaml"
+    overlays:
+      - name: "add include marker on service account for kong project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ServiceAccount
+        query: "$"
+        value:
+          # +operator-builder:resource:field=kong.include,value=true,include
+          apiVersion: v1
+
+      - name: "add include marker on roles and bindings for kong project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: Role
+          - conditions:
+              - query: kind
+                value: ClusterRole
+          - conditions:
+              - query: kind
+                value: RoleBinding
+          - conditions:
+              - query: kind
+                value: ClusterRoleBinding
+        query: "$"
+        value:
+          # +operator-builder:resource:field=kong.include,value=true,include
+          apiVersion: rbac.authorization.k8s.io/v1
 
   - name: "kong service"
     path: "../vendor/service.yaml"
     outputPath: "manifests/service.yaml"
+    overlays:
+      - name: "add include marker for kong project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=kong.include,value=true,include
+          apiVersion: v1
 

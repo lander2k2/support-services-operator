@@ -36,19 +36,25 @@ func CreateServiceAccountNamespaceExternalSecretsCertController(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "ServiceAccount",
 			"metadata": map[string]interface{}{
 				"name":      "external-secrets-cert-controller",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets-cert-controller",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets-cert-controller",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 		},
@@ -66,19 +72,25 @@ func CreateServiceAccountNamespaceExternalSecrets(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "ServiceAccount",
 			"metadata": map[string]interface{}{
 				"name":      "external-secrets",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 		},
@@ -96,19 +108,25 @@ func CreateServiceAccountNamespaceExternalSecretsWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "ServiceAccount",
 			"metadata": map[string]interface{}{
 				"name":      "external-secrets-webhook",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets-webhook",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets-webhook",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 		},
@@ -131,18 +149,24 @@ func CreateClusterRoleExternalSecretsCertController(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
 				"name": "external-secrets-cert-controller",
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets-cert-controller",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets-cert-controller",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"rules": []interface{}{
@@ -250,18 +274,24 @@ func CreateClusterRoleExternalSecretsController(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
 				"name": "external-secrets-controller",
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"rules": []interface{}{
@@ -402,8 +432,14 @@ func CreateClusterRoleExternalSecretsView(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
@@ -415,7 +451,7 @@ func CreateClusterRoleExternalSecretsView(
 					"rbac.authorization.k8s.io/aggregate-to-view":  "true",
 					"rbac.authorization.k8s.io/aggregate-to-edit":  "true",
 					"rbac.authorization.k8s.io/aggregate-to-admin": "true",
-					"platform.nukleros.io/group":                   "secrets",
+					"platform.nukleros.io/category":                "secrets",
 					"platform.nukleros.io/project":                 "external-secrets",
 				},
 			},
@@ -454,8 +490,14 @@ func CreateClusterRoleExternalSecretsEdit(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
@@ -466,7 +508,7 @@ func CreateClusterRoleExternalSecretsEdit(
 					"app.kubernetes.io/version":                    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
 					"rbac.authorization.k8s.io/aggregate-to-edit":  "true",
 					"rbac.authorization.k8s.io/aggregate-to-admin": "true",
-					"platform.nukleros.io/group":                   "secrets",
+					"platform.nukleros.io/category":                "secrets",
 					"platform.nukleros.io/project":                 "external-secrets",
 				},
 			},
@@ -504,18 +546,24 @@ func CreateClusterRoleBindingExternalSecretsCertController(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRoleBinding",
 			"metadata": map[string]interface{}{
 				"name": "external-secrets-cert-controller",
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets-cert-controller",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets-cert-controller",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -545,18 +593,24 @@ func CreateClusterRoleBindingExternalSecretsController(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRoleBinding",
 			"metadata": map[string]interface{}{
 				"name": "external-secrets-controller",
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -588,19 +642,25 @@ func CreateRoleNamespaceExternalSecretsLeaderelection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "Role",
 			"metadata": map[string]interface{}{
 				"name":      "external-secrets-leaderelection",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"rules": []interface{}{
@@ -661,19 +721,25 @@ func CreateRoleBindingNamespaceExternalSecretsLeaderelection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.ExternalSecrets.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=externalSecrets.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "RoleBinding",
 			"metadata": map[string]interface{}{
 				"name":      "external-secrets-leaderelection",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app.kubernetes.io/name":       "external-secrets",
-					"app.kubernetes.io/instance":   "external-secrets",
-					"app.kubernetes.io/version":    parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "external-secrets",
+					"app.kubernetes.io/name":        "external-secrets",
+					"app.kubernetes.io/instance":    "external-secrets",
+					"app.kubernetes.io/version":     parent.Spec.ExternalSecrets.Version, //  controlled by field: externalSecrets.version
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "external-secrets",
 				},
 			},
 			"roleRef": map[string]interface{}{

@@ -33,7 +33,7 @@ kind: SupportServices
 metadata:
   name: supportservices-sample
 spec:
-  tier: "development"
+  tier: "local"
 `
 
 // sampleSupportServicesRequired is a sample containing only required fields

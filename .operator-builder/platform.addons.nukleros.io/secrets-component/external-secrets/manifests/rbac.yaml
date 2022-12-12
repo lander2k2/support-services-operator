@@ -1,4 +1,5 @@
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -8,9 +9,10 @@ metadata:
     app.kubernetes.io/name: external-secrets-cert-controller
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -20,9 +22,10 @@ metadata:
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -32,9 +35,10 @@ metadata:
     app.kubernetes.io/name: external-secrets-webhook
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -43,7 +47,7 @@ metadata:
     app.kubernetes.io/name: external-secrets-cert-controller
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 rules:
   - apiGroups:
@@ -92,6 +96,7 @@ rules:
       - update
       - patch
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -100,7 +105,7 @@ metadata:
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 rules:
   - apiGroups:
@@ -182,6 +187,7 @@ rules:
       - create
       - update
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -193,7 +199,7 @@ metadata:
     rbac.authorization.k8s.io/aggregate-to-view: "true"
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 rules:
   - apiGroups:
@@ -207,6 +213,7 @@ rules:
       - watch
       - list
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -217,7 +224,7 @@ metadata:
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
     rbac.authorization.k8s.io/aggregate-to-edit: "true"
     rbac.authorization.k8s.io/aggregate-to-admin: "true"
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 rules:
   - apiGroups:
@@ -233,6 +240,7 @@ rules:
       - patch
       - update
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -241,7 +249,7 @@ metadata:
     app.kubernetes.io/name: external-secrets-cert-controller
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -252,6 +260,7 @@ subjects:
     namespace: nukleros-secrets-system # +operator-builder:field:name=namespace,default="nukleros-secrets-system",type=string
     kind: ServiceAccount
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -260,7 +269,7 @@ metadata:
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -271,6 +280,7 @@ subjects:
     namespace: nukleros-secrets-system # +operator-builder:field:name=namespace,default="nukleros-secrets-system",type=string
     kind: ServiceAccount
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -280,7 +290,7 @@ metadata:
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 rules:
   - apiGroups:
@@ -309,6 +319,7 @@ rules:
       - update
       - patch
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -318,7 +329,7 @@ metadata:
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 roleRef:
   apiGroup: rbac.authorization.k8s.io

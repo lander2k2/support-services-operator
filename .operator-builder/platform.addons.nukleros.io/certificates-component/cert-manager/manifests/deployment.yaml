@@ -10,7 +10,7 @@ metadata:
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: cainjector
     app.kubernetes.io/version: v1.9.1
-    platform.nukleros.io/group: certificates
+    platform.nukleros.io/category: certificates
     platform.nukleros.io/project: cert-manager
 spec:
   # +operator-builder:field:name=certManager.cainjector.replicas,default="2",type=int,description=`
@@ -29,7 +29,7 @@ spec:
         app.kubernetes.io/instance: cert-manager
         app.kubernetes.io/component: cainjector
         app.kubernetes.io/version: v1.9.1
-        platform.nukleros.io/group: certificates
+        platform.nukleros.io/category: certificates
         platform.nukleros.io/project: cert-manager
     spec:
       serviceAccountName: cert-manager-cainjector
@@ -93,7 +93,7 @@ metadata:
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: controller
     app.kubernetes.io/version: v1.9.1
-    platform.nukleros.io/group: certificates
+    platform.nukleros.io/category: certificates
     platform.nukleros.io/project: cert-manager
 spec:
   # +operator-builder:field:name=certManager.controller.replicas,default="2",type=int,description=`
@@ -112,7 +112,7 @@ spec:
         app.kubernetes.io/instance: cert-manager
         app.kubernetes.io/component: controller
         app.kubernetes.io/version: v1.9.1
-        platform.nukleros.io/group: certificates
+        platform.nukleros.io/category: certificates
         platform.nukleros.io/project: cert-manager
       annotations:
         prometheus.io/path: /metrics
@@ -184,7 +184,7 @@ metadata:
     app.kubernetes.io/instance: cert-manager
     app.kubernetes.io/component: webhook
     app.kubernetes.io/version: v1.9.1
-    platform.nukleros.io/group: certificates
+    platform.nukleros.io/category: certificates
     platform.nukleros.io/project: cert-manager
 spec:
   # +operator-builder:field:name=certManager.webhook.replicas,default="2",type=int,description=`
@@ -203,7 +203,7 @@ spec:
         app.kubernetes.io/instance: cert-manager
         app.kubernetes.io/component: webhook
         app.kubernetes.io/version: v1.9.1
-        platform.nukleros.io/group: certificates
+        platform.nukleros.io/category: certificates
         platform.nukleros.io/project: cert-manager
     spec:
       serviceAccountName: cert-manager-webhook

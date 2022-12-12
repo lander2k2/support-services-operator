@@ -36,6 +36,7 @@ func CreateServiceAccountNamespacePostgresOperator(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "v1",
@@ -81,6 +82,7 @@ func CreateClusterRolePostgresOperator(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -374,6 +376,7 @@ func CreateClusterRoleBindingPostgresOperator(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",
@@ -411,6 +414,7 @@ func CreateClusterRolePostgresPod(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "rbac.authorization.k8s.io/v1",

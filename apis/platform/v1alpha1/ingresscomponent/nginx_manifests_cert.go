@@ -29,6 +29,50 @@ import (
 
 // +kubebuilder:rbac:groups=cert-manager.io,resources=certificates,verbs=get;list;watch;create;update;patch;delete
 
+// CreateCertNamespaceNginxDefaultServerSecretLocal creates the Certificate resource with name nginx-default-server-secret-local.
+func CreateCertNamespaceNginxDefaultServerSecretLocal(
+	parent *platformv1alpha1.IngressComponent,
+	collection *setupv1alpha1.SupportServices,
+	reconciler workload.Reconciler,
+	req *workload.Request,
+) ([]client.Object, error) {
+
+	if parent.Spec.Nginx.Include != true {
+		return []client.Object{}, nil
+	}
+
+	if collection.Spec.Tier != "local" {
+		return []client.Object{}, nil
+	}
+
+	var resourceObj = &unstructured.Unstructured{
+		Object: map[string]interface{}{
+			// +operator-builder:resource:field=nginx.include,value=true,include
+			// +operator-builder:resource:collectionField=tier,value="local",include
+			"apiVersion": "cert-manager.io/v1",
+			"kind":       "Certificate",
+			"metadata": map[string]interface{}{
+				"name":      "nginx-default-server-secret-local",
+				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
+			},
+			"spec": map[string]interface{}{
+				"secretName": "default-server-secret",
+				"dnsNames": []interface{}{
+					parent.Spec.DomainName, //  controlled by field: domainName
+				},
+				"issuerRef": map[string]interface{}{
+					"name": "nukleros-local-self-signed",
+					"kind": "ClusterIssuer",
+				},
+			},
+		},
+	}
+
+	return mutate.MutateCertNamespaceNginxDefaultServerSecretLocal(resourceObj, parent, collection, reconciler, req)
+}
+
+// +kubebuilder:rbac:groups=cert-manager.io,resources=certificates,verbs=get;list;watch;create;update;patch;delete
+
 // CreateCertNamespaceNginxDefaultServerSecretNonProd creates the Certificate resource with name nginx-default-server-secret-non-prod.
 func CreateCertNamespaceNginxDefaultServerSecretNonProd(
 	parent *platformv1alpha1.IngressComponent,
@@ -36,12 +80,19 @@ func CreateCertNamespaceNginxDefaultServerSecretNonProd(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
-	if collection.Spec.Tier == "production" {
+
+	if parent.Spec.Nginx.Include != true {
 		return []client.Object{}, nil
 	}
+
+	if collection.Spec.Tier != "development" {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
-			// +operator-builder:resource:collectionField=tier,value="production",include=false
+			// +operator-builder:resource:field=nginx.include,value=true,include
+			// +operator-builder:resource:collectionField=tier,value="development",include
 			"apiVersion": "cert-manager.io/v1",
 			"kind":       "Certificate",
 			"metadata": map[string]interface{}{
@@ -73,11 +124,18 @@ func CreateCertNamespaceNginxDefaultServerSecretProd(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Nginx.Include != true {
+		return []client.Object{}, nil
+	}
+
 	if collection.Spec.Tier != "production" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=nginx.include,value=true,include
 			// +operator-builder:resource:collectionField=tier,value="production",include
 			"apiVersion": "cert-manager.io/v1",
 			"kind":       "Certificate",

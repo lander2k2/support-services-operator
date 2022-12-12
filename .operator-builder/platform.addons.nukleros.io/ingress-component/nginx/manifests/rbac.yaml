@@ -1,19 +1,21 @@
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: nginx-ingress
-  namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
+  namespace: nginx-ingress # +operator-builder:field:name=namespace,type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: nginx-ingress-controller
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: nginx-ingress
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: nginx-ingress-controller
 rules:
   - apiGroups:
@@ -137,17 +139,18 @@ rules:
     verbs:
       - update
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: nginx-ingress
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: nginx-ingress-controller
 subjects:
   - kind: ServiceAccount
     name: nginx-ingress
-    namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
+    namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,type=string
 roleRef:
   kind: ClusterRole
   name: nginx-ingress

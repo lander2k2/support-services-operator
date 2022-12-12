@@ -96,13 +96,26 @@ yamlFiles:
     path: "../static/issuer.yaml"
     outputPath: "manifests/issuer.yaml"
     overlays:
+      - name: "add include marker for local issuer"
+        documentQuery:
+          - conditions:
+            - query: $[?($.metadata.name == "nukleros-local-self-signed")]
+          - conditions:
+            - query: $[?($.metadata.name == "nukleros-local-self-signed-ca")]
+          - conditions:
+            - query: $[?($.metadata.name == "nukleros-local-self-signed-root")]
+        query: "$"
+        value:
+          # +operator-builder:resource:collectionField=tier,value="local",include
+          apiVersion: cert-manager.io/v1
+
       - name: "add include marker for non-prod issuer"
         documentQuery:
           - conditions:
             - query: $[?($.metadata.name == "letsencrypt-staging")]
         query: "$"
         value:
-          # +operator-builder:resource:collectionField=tier,value="production",include=false
+          # +operator-builder:resource:collectionField=tier,value="development",include
           apiVersion: cert-manager.io/v1
 
       - name: "add include marker for prod issuer"

@@ -2,10 +2,10 @@ apiVersion: vendir.k14s.io/v1alpha1
 directories:
 - contents:
   - git:
-      commitTitle: 'Merge pull request #16 from lander2k2/nginx-rbac...'
-      sha: f72048843f3eb0ec0a4c2c6b12ba55f22db4cd6a
+      commitTitle: 'Merge pull request #19 from nukleros/nginx-rbac...'
+      sha: 8342a50bb1efc35677eeb3b1a25fba2a000cd8b6
       tags:
-      - v0.1.2
+      - v0.1.4
     path: ./
   path: platform.addons.nukleros.io/ingress-component/nginx/vendor
 - contents:

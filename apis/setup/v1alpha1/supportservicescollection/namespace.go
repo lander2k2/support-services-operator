@@ -34,11 +34,12 @@ func CreateNamespaceParentName(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// controlled by field: tier
-			//  +kubebuilder:validation:Enum=development;staging;production
-			//  The tier of cluster being used.  One of: development | staging | production.
+			//  +kubebuilder:validation:Enum=local;development;production
+			//  The tier of cluster being used.  One of: local | development | production.
 			"apiVersion": "v1",
 			"kind":       "Namespace",
 			"metadata": map[string]interface{}{

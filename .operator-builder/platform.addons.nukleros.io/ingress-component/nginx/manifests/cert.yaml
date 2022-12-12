@@ -1,5 +1,21 @@
 ---
-# +operator-builder:resource:collectionField=tier,value="production",include=false
+# +operator-builder:resource:field=nginx.include,value=true,include
+# +operator-builder:resource:collectionField=tier,value="local",include
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nginx-default-server-secret-local
+  namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
+spec:
+  secretName: default-server-secret
+  dnsNames:
+    - nukleros.io # +operator-builder:field:name=domainName,type=string
+  issuerRef:
+    name: nukleros-local-self-signed
+    kind: ClusterIssuer
+---
+# +operator-builder:resource:field=nginx.include,value=true,include
+# +operator-builder:resource:collectionField=tier,value="development",include
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
@@ -13,6 +29,7 @@ spec:
     name: letsencrypt-staging
     kind: ClusterIssuer
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 # +operator-builder:resource:collectionField=tier,value="production",include
 apiVersion: cert-manager.io/v1
 kind: Certificate

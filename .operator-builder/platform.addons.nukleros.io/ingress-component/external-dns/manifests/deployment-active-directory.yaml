@@ -8,7 +8,7 @@ metadata:
     app: external-dns-active-directory
     app.kubernetes.io/name: external-dns-active-directory
     app.kubernetes.io/instance: external-dns
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: external-dns
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
 spec:
@@ -23,7 +23,7 @@ spec:
         app: external-dns-active-directory
         app.kubernetes.io/name: external-dns-active-directory
         app.kubernetes.io/instance: external-dns
-        platform.nukleros.io/group: ingress
+        platform.nukleros.io/category: ingress
         platform.nukleros.io/project: external-dns
     spec:
       serviceAccountName: external-dns

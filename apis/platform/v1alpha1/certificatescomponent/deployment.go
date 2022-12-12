@@ -36,6 +36,7 @@ func CreateDeploymentNamespaceCertManagerCainjector(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apps/v1",
@@ -44,13 +45,13 @@ func CreateDeploymentNamespaceCertManagerCainjector(
 				"name":      "cert-manager-cainjector",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cainjector",
-					"app.kubernetes.io/name":       "cainjector",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "cainjector",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cainjector",
+					"app.kubernetes.io/name":        "cainjector",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "cainjector",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -67,13 +68,13 @@ func CreateDeploymentNamespaceCertManagerCainjector(
 				"template": map[string]interface{}{
 					"metadata": map[string]interface{}{
 						"labels": map[string]interface{}{
-							"app":                          "cainjector",
-							"app.kubernetes.io/name":       "cainjector",
-							"app.kubernetes.io/instance":   "cert-manager",
-							"app.kubernetes.io/component":  "cainjector",
-							"app.kubernetes.io/version":    "v1.9.1",
-							"platform.nukleros.io/group":   "certificates",
-							"platform.nukleros.io/project": "cert-manager",
+							"app":                           "cainjector",
+							"app.kubernetes.io/name":        "cainjector",
+							"app.kubernetes.io/instance":    "cert-manager",
+							"app.kubernetes.io/component":   "cainjector",
+							"app.kubernetes.io/version":     "v1.9.1",
+							"platform.nukleros.io/category": "certificates",
+							"platform.nukleros.io/project":  "cert-manager",
 						},
 					},
 					"spec": map[string]interface{}{
@@ -172,6 +173,7 @@ func CreateDeploymentNamespaceCertManager(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apps/v1",
@@ -180,13 +182,13 @@ func CreateDeploymentNamespaceCertManager(
 				"name":      "cert-manager",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "cert-manager",
-					"app.kubernetes.io/name":       "cert-manager",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "controller",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "cert-manager",
+					"app.kubernetes.io/name":        "cert-manager",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "controller",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -203,13 +205,13 @@ func CreateDeploymentNamespaceCertManager(
 				"template": map[string]interface{}{
 					"metadata": map[string]interface{}{
 						"labels": map[string]interface{}{
-							"app":                          "cert-manager",
-							"app.kubernetes.io/name":       "cert-manager",
-							"app.kubernetes.io/instance":   "cert-manager",
-							"app.kubernetes.io/component":  "controller",
-							"app.kubernetes.io/version":    "v1.9.1",
-							"platform.nukleros.io/group":   "certificates",
-							"platform.nukleros.io/project": "cert-manager",
+							"app":                           "cert-manager",
+							"app.kubernetes.io/name":        "cert-manager",
+							"app.kubernetes.io/instance":    "cert-manager",
+							"app.kubernetes.io/component":   "controller",
+							"app.kubernetes.io/version":     "v1.9.1",
+							"platform.nukleros.io/category": "certificates",
+							"platform.nukleros.io/project":  "cert-manager",
 						},
 						"annotations": map[string]interface{}{
 							"prometheus.io/path":   "/metrics",
@@ -320,6 +322,7 @@ func CreateDeploymentNamespaceCertManagerWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "apps/v1",
@@ -328,13 +331,13 @@ func CreateDeploymentNamespaceCertManagerWebhook(
 				"name":      "cert-manager-webhook",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 			},
 			"spec": map[string]interface{}{
@@ -351,13 +354,13 @@ func CreateDeploymentNamespaceCertManagerWebhook(
 				"template": map[string]interface{}{
 					"metadata": map[string]interface{}{
 						"labels": map[string]interface{}{
-							"app":                          "webhook",
-							"app.kubernetes.io/name":       "webhook",
-							"app.kubernetes.io/instance":   "cert-manager",
-							"app.kubernetes.io/component":  "webhook",
-							"app.kubernetes.io/version":    "v1.9.1",
-							"platform.nukleros.io/group":   "certificates",
-							"platform.nukleros.io/project": "cert-manager",
+							"app":                           "webhook",
+							"app.kubernetes.io/name":        "webhook",
+							"app.kubernetes.io/instance":    "cert-manager",
+							"app.kubernetes.io/component":   "webhook",
+							"app.kubernetes.io/version":     "v1.9.1",
+							"platform.nukleros.io/category": "certificates",
+							"platform.nukleros.io/project":  "cert-manager",
 						},
 					},
 					"spec": map[string]interface{}{

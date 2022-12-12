@@ -1,6 +1,19 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
+  name: nginx-default-server-secret-local
+  namespace: nukleros-ingress-system
+spec:
+  secretName: default-server-secret
+  dnsNames:
+    - nukleros.io
+  issuerRef:
+    name: nukleros-local-self-signed
+    kind: ClusterIssuer
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
   name: nginx-default-server-secret-non-prod
   namespace: nukleros-ingress-system
 spec:
@@ -23,4 +36,3 @@ spec:
   issuerRef:
     name: letsencrypt-production
     kind: ClusterIssuer
-

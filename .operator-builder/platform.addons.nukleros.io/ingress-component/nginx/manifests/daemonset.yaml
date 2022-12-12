@@ -1,10 +1,11 @@
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 # +operator-builder:resource:field=nginx.installType,value="daemonset",include
 apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: nginx-ingress
-  namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
+  namespace: nginx-ingress # +operator-builder:field:name=namespace,type=string
 spec:
   selector:
     matchLabels:

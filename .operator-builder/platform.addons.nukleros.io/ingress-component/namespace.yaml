@@ -2,6 +2,14 @@
 # +operator-builder:field:name=nginx.installType,arbitrary,default="deployment",type=string,description=`
 # +kubebuilder:validation:Enum=deployment;daemonset
 # Method of install nginx ingress controller.  One of: deployment | daemonset.`
+# +operator-builder:field:name=nginx.include,arbitrary,default=true,type=bool,description=`
+# Determines whether nginx project is included at installation time.`
+# +operator-builder:field:name=kong.include,arbitrary,default=false,type=bool,description=`
+# Determines whether nginx project is included at installation time.`
+# +operator-builder:field:name=externalDNS.provider,arbitrary,default="none",type=string,description=`
+# +kubebuilder:validation:Enum=none;active-directory;google;route53
+# DNS provider.  One of: none | active-directory | google | route53.
+# If "none" external DNS will not be installed.`
 apiVersion: v1
 kind: Namespace
 metadata:

@@ -9,18 +9,36 @@ yamlFiles:
   - name: "nginx configmap"
     path: "../vendor/config.yaml"
     outputPath: "manifests/config.yaml"
+    overlays:
+      - name: "add include marker for nginx project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          kind: ConfigMap
 
   - name: "nginx crds"
     path: "../vendor/crds.yaml"
     outputPath: "manifests/crds.yaml"
+    overlays:
+      - name: "add include marker for nginx project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          apiVersion: apiextensions.k8s.io/v1
 
   - name: "nginx daemonset"
     path: "../vendor-nginx/nginx-ingress.yaml"
     outputPath: "manifests/daemonset.yaml"
     overlays:
-      - name: "add include marker for nginx daemonset"
+      - name: "add namespace markers minus default"
+        query:
+          - metadata.namespace
+        value: "%v"  # +operator-builder:field:name=namespace,type=string
+
+      - name: "add include marker for nginx daemonset and project"
         query: "$"
         value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
           # +operator-builder:resource:field=nginx.installType,value="daemonset",include
           apiVersion: apps/v1
 
@@ -40,6 +58,7 @@ yamlFiles:
       - name: "add include marker for nginx deployment"
         query: "$"
         value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
           # +operator-builder:resource:field=nginx.installType,value="deployment",include
           apiVersion: apps/v1
 
@@ -63,38 +82,104 @@ yamlFiles:
   - name: "nginx ingress class"
     path: "../vendor/ingress-class.yaml"
     outputPath: "manifests/ingress-class.yaml"
+    overlays:
+      - name: "add include marker for nginx project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          apiVersion: networking.k8s.io/v1
 
   - name: "nginx rbac"
     path: "../vendor/rbac.yaml"
     outputPath: "manifests/rbac.yaml"
+    overlays:
+      - name: "add namespace markers minus default"
+        query:
+          - metadata.namespace
+          - subjects[*].namespace
+        value: "%v"  # +operator-builder:field:name=namespace,type=string
+
+      - name: "add include marker on service account for nginx project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ServiceAccount
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          apiVersion: v1
+
+      - name: "add include marker on cluster role for nginx project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ClusterRole
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          kind: ClusterRole
+
+      - name: "add include marker on cluster role binding for nginx project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ClusterRoleBinding
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          kind: ClusterRoleBinding
 
   - name: "nginx service for aws"
     path: "../vendor/service-aws.yaml"
     outputPath: "manifests/service-aws.yaml"
+    overlays:
+      - name: "add include marker for nginx project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          apiVersion: v1
 
   - name: "nginx service for gcp and azure"
     path: "../vendor/service-gcp-azure.yaml"
     outputPath: "manifests/service-gcp-azure.yaml"
+    overlays:
+      - name: "add include marker for nginx project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          apiVersion: v1
 
   - name: "nginx default server certificate"
     path: "../static/cert.yaml"
     outputPath: "manifests/cert.yaml"
     overlays:
-      - name: "add include marker for non-prod cert"
+      - name: "add include markers for local cert and project"
+        documentQuery:
+          - conditions:
+            - query: $[?($.metadata.name == "nginx-default-server-secret-local")]
+        query: "$"
+        value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          # +operator-builder:resource:collectionField=tier,value="local",include
+          apiVersion: cert-manager.io/v1
+
+      - name: "add include markers for non-prod cert and project"
         documentQuery:
           - conditions:
             - query: $[?($.metadata.name == "nginx-default-server-secret-non-prod")]
         query: "$"
         value:
-          # +operator-builder:resource:collectionField=tier,value="production",include=false
+          # +operator-builder:resource:field=nginx.include,value=true,include
+          # +operator-builder:resource:collectionField=tier,value="development",include
           apiVersion: cert-manager.io/v1
 
-      - name: "add include marker for prod cert"
+      - name: "add include markers for prod cert and project"
         documentQuery:
           - conditions:
             - query: $[?($.metadata.name == "nginx-default-server-secret-prod")]
         query: "$"
         value:
+          # +operator-builder:resource:field=nginx.include,value=true,include
           # +operator-builder:resource:collectionField=tier,value="production",include
           apiVersion: cert-manager.io/v1
 

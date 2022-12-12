@@ -36,9 +36,11 @@ func CreateDeploymentNamespaceExternalDnsRoute53(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	if parent.Spec.ExternalDNS.Provider != "route53" {
 		return []client.Object{}, nil
 	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// +operator-builder:resource:field=externalDNS.provider,value="route53",include
@@ -47,11 +49,11 @@ func CreateDeploymentNamespaceExternalDnsRoute53(
 			"metadata": map[string]interface{}{
 				"name": "external-dns-route53",
 				"labels": map[string]interface{}{
-					"app":                          "external-dns-route53",
-					"app.kubernetes.io/name":       "external-dns-route53",
-					"app.kubernetes.io/instance":   "external-dns",
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "external-dns",
+					"app":                           "external-dns-route53",
+					"app.kubernetes.io/name":        "external-dns-route53",
+					"app.kubernetes.io/instance":    "external-dns",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "external-dns",
 				},
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 			},
@@ -67,11 +69,11 @@ func CreateDeploymentNamespaceExternalDnsRoute53(
 				"template": map[string]interface{}{
 					"metadata": map[string]interface{}{
 						"labels": map[string]interface{}{
-							"app":                          "external-dns-route53",
-							"app.kubernetes.io/name":       "external-dns-route53",
-							"app.kubernetes.io/instance":   "external-dns",
-							"platform.nukleros.io/group":   "ingress",
-							"platform.nukleros.io/project": "external-dns",
+							"app":                           "external-dns-route53",
+							"app.kubernetes.io/name":        "external-dns-route53",
+							"app.kubernetes.io/instance":    "external-dns",
+							"platform.nukleros.io/category": "ingress",
+							"platform.nukleros.io/project":  "external-dns",
 						},
 					},
 					"spec": map[string]interface{}{

@@ -1,18 +1,20 @@
 ---
+# +operator-builder:resource:field=reloader.include,value=true,include
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: reloader
   name: secret-reloader
   namespace: nukleros-secrets-system # +operator-builder:field:name=namespace,default="nukleros-secrets-system",type=string
 ---
+# +operator-builder:resource:field=reloader.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   labels:
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: reloader
   name: secret-reloader
   namespace: nukleros-secrets-system # +operator-builder:field:name=namespace,default="nukleros-secrets-system",type=string
@@ -48,11 +50,12 @@ rules:
       - update
       - patch
 ---
+# +operator-builder:resource:field=reloader.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   labels:
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: reloader
   name: secret-reloader
   namespace: nukleros-secrets-system # +operator-builder:field:name=namespace,default="nukleros-secrets-system",type=string

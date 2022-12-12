@@ -1,20 +1,22 @@
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: kong-serviceaccount
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: kong-leader-election
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 rules:
   - apiGroups:
@@ -39,12 +41,13 @@ rules:
       - create
       - patch
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: kong-ingress
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 rules:
   - apiGroups:
@@ -385,13 +388,14 @@ rules:
       - patch
       - update
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   name: kong-leader-election
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -402,12 +406,13 @@ subjects:
     name: kong-serviceaccount
     namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: kong-ingress
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
 roleRef:
   apiGroup: rbac.authorization.k8s.io

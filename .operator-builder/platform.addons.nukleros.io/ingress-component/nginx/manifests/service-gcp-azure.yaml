@@ -1,11 +1,12 @@
 ---
+# +operator-builder:resource:field=nginx.include,value=true,include
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-ingress-gcp-azure
   namespace: nukleros-ingress-system # +operator-builder:field:name=namespace,default="nukleros-ingress-system",type=string
   labels:
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: nginx-ingress-controller
 spec:
   externalTrafficPolicy: Local

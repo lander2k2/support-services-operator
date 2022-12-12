@@ -37,8 +37,8 @@ spec:
   #collection:
     #name: "supportservices-sample"
     #namespace: ""
-  namespace: "nukleros-secrets-system"
   externalSecrets:
+    include: true
     version: "v0.5.9"
     certController:
       replicas: 1
@@ -48,9 +48,11 @@ spec:
     webhook:
       replicas: 2
   reloader:
+    include: true
     replicas: 1
     image: "stakater/reloader"
     version: "v0.0.119"
+  namespace: "nukleros-secrets-system"
 `
 
 // sampleSecretsComponentRequired is a sample containing only required fields

@@ -7,17 +7,13 @@ spec:
     #name: "supportservices-sample"
     #namespace: ""
   nginx:
+    include: false
     installType: "deployment"
     image: "nginx/nginx-ingress"
     version: "2.3.0"
-    replicas: 2
-  namespace: "nukleros-ingress-system"
-  externalDNS:
-    provider: "none"
-    image: "k8s.gcr.io/external-dns/external-dns"
-    version: "v0.12.2"
-  domainName: "nukleros.io"
+    replicas: 1
   kong:
+    include: false
     replicas: 2
     gateway:
       image: "kong/kong-gateway"
@@ -25,3 +21,9 @@ spec:
     ingressController:
       image: "kong/kubernetes-ingress-controller"
       version: "2.5.0"
+  externalDNS:
+    provider: "none"
+    image: "k8s.gcr.io/external-dns/external-dns"
+    version: "v0.12.2"
+  namespace: "nukleros-ingress-system"
+  domainName: "nukleros.io"

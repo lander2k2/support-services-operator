@@ -1,4 +1,8 @@
 ---
+# +operator-builder:field:name=externalSecrets.include,arbitrary,default=true,type=bool,description=`
+# Determines whether external secrets project is included at installation time.`
+# +operator-builder:field:name=reloader.include,arbitrary,default=true,type=bool,description=`
+# Determines whether reloader project is included at installation time.`
 apiVersion: v1
 kind: Namespace
 metadata:

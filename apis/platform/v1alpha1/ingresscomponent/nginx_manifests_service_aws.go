@@ -36,8 +36,14 @@ func CreateServiceNamespaceNginxIngressAws(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Nginx.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=nginx.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "Service",
 			"metadata": map[string]interface{}{
@@ -48,8 +54,8 @@ func CreateServiceNamespaceNginxIngressAws(
 					"service.beta.kubernetes.io/aws-load-balancer-proxy-protocol":   "*",
 				},
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "nginx-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "nginx-ingress-controller",
 				},
 			},
 			"spec": map[string]interface{}{

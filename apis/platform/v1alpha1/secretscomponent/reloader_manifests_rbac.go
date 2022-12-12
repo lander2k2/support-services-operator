@@ -36,14 +36,20 @@ func CreateServiceAccountNamespaceSecretReloader(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Reloader.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=reloader.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "ServiceAccount",
 			"metadata": map[string]interface{}{
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "reloader",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "reloader",
 				},
 				"name":      "secret-reloader",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
@@ -70,14 +76,20 @@ func CreateClusterRoleNamespaceSecretReloader(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Reloader.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=reloader.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "reloader",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "reloader",
 				},
 				"name":      "secret-reloader",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
@@ -144,14 +156,20 @@ func CreateClusterRoleBindingNamespaceSecretReloader(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Reloader.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=reloader.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRoleBinding",
 			"metadata": map[string]interface{}{
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "secrets",
-					"platform.nukleros.io/project": "reloader",
+					"platform.nukleros.io/category": "secrets",
+					"platform.nukleros.io/project":  "reloader",
 				},
 				"name":      "secret-reloader",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace

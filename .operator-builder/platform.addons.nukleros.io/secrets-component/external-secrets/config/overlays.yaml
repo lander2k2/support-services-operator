@@ -16,9 +16,22 @@ yamlFiles:
           labels:
             app.kubernetes.io/version: v0.5.9  # +operator-builder:field:name=externalSecrets.version,default="{{ .defaultVersion }}",type=string
 
+      - name: "add include marker for external secrets project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: v1
+
   - name: "external-secrets crds"
     path: "../vendor/crds.yaml"
     outputPath: "manifests/crds.yaml"
+    overlays:
+      - name: "add include marker for external secrets project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: apiextensions.k8s.io/v1
+
 
   - name: "external-secrets deployment"
     path: "../vendor/deployment.yaml"
@@ -63,6 +76,12 @@ yamlFiles:
             # Number of replicas to use for the external-secrets webhook deployment.`
             replicas: !!int "%v"
 
+      - name: "add include marker for external secrets project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: apps/v1
+
   - name: "external-secrets rbac"
     path: "../vendor/rbac.yaml"
     outputPath: "manifests/rbac.yaml"
@@ -72,6 +91,35 @@ yamlFiles:
         value:
           labels:
             app.kubernetes.io/version: v0.5.9  # +operator-builder:field:name=externalSecrets.version,default="{{ .defaultVersion }}",type=string
+
+      - name: "add include marker on service account for external secrets project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ServiceAccount
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: v1
+
+      - name: "add include marker on roles and bindings for external secrets project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: Role
+          - conditions:
+              - query: kind
+                value: ClusterRole
+          - conditions:
+              - query: kind
+                value: RoleBinding
+          - conditions:
+              - query: kind
+                value: ClusterRoleBinding
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: rbac.authorization.k8s.io/v1
 
   - name: "external-secrets service"
     path: "../vendor/service.yaml"
@@ -83,7 +131,19 @@ yamlFiles:
           labels:
             app.kubernetes.io/version: v0.5.9  # +operator-builder:field:name=externalSecrets.version,default="{{ .defaultVersion }}",type=string
 
+      - name: "add include marker for external secrets project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: v1
+
   - name: "external-secrets webhook"
     path: "../vendor/webhook.yaml"
     outputPath: "manifests/webhook.yaml"
+    overlays:
+      - name: "add include marker for external secrets project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=externalSecrets.include,value=true,include
+          apiVersion: admissionregistration.k8s.io/v1
 

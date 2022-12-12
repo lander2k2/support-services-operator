@@ -1,5 +1,39 @@
 ---
-# +operator-builder:resource:collectionField=tier,value="production",include=false
+# +operator-builder:resource:collectionField=tier,value="local",include
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: nukleros-local-self-signed-root
+spec:
+  selfSigned: {}
+---
+# +operator-builder:resource:collectionField=tier,value="local",include
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: nukleros-local-self-signed-ca
+  namespace: nukleros-certs-system # +operator-builder:field:name=namespace,default="nukleros-certs-system",type=string
+spec:
+  isCA: true
+  commonName: nukleros-local-ca
+  secretName: nukleros-local-ca
+  privateKey:
+    algorithm: ECDSA
+    size: 256
+  issuerRef:
+    name: nukleros-local-self-signed-root
+    kind: ClusterIssuer
+---
+# +operator-builder:resource:collectionField=tier,value="local",include
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: nukleros-local-self-signed
+spec:
+  ca:
+    secretName: nukleros-local-ca
+---
+# +operator-builder:resource:collectionField=tier,value="development",include
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:

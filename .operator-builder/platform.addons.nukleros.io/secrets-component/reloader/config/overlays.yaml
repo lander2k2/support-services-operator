@@ -27,7 +27,36 @@ yamlFiles:
             # Number of replicas to use for the reloader deployment.`
             replicas: !!int "%v"
 
+      - name: "add include marker for reloader project"
+        query: "$"
+        value:
+          # +operator-builder:resource:field=reloader.include,value=true,include
+          apiVersion: apps/v1
+
   - name: "reloader rbac"
     path: "../vendor/rbac.yaml"
     outputPath: "manifests/rbac.yaml"
+    overlays:
+      - name: "add include marker on service account for reloader project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ServiceAccount
+        query: "$"
+        value:
+          # +operator-builder:resource:field=reloader.include,value=true,include
+          apiVersion: v1
+
+      - name: "add include marker on cluster role and binding for reloader project"
+        documentQuery:
+          - conditions:
+              - query: kind
+                value: ClusterRole
+          - conditions:
+              - query: kind
+                value: ClusterRoleBinding
+        query: "$"
+        value:
+          # +operator-builder:resource:field=reloader.include,value=true,include
+          apiVersion: rbac.authorization.k8s.io/v1
 

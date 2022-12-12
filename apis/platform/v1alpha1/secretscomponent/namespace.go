@@ -36,8 +36,13 @@ func CreateNamespaceNamespace(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// controlled by field: externalSecrets.include
+			// controlled by field: reloader.include
+			//  Determines whether external secrets project is included at installation time.
+			//  Determines whether reloader project is included at installation time.
 			"apiVersion": "v1",
 			"kind":       "Namespace",
 			"metadata": map[string]interface{}{

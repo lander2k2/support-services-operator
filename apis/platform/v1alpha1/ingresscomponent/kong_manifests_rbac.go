@@ -36,16 +36,22 @@ func CreateServiceAccountNamespaceKongServiceaccount(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "v1",
 			"kind":       "ServiceAccount",
 			"metadata": map[string]interface{}{
 				"name":      "kong-serviceaccount",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 		},
@@ -68,16 +74,22 @@ func CreateRoleNamespaceKongLeaderElection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "Role",
 			"metadata": map[string]interface{}{
 				"name":      "kong-leader-election",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"rules": []interface{}{
@@ -171,15 +183,21 @@ func CreateClusterRoleKongIngress(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRole",
 			"metadata": map[string]interface{}{
 				"name": "kong-ingress",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"rules": []interface{}{
@@ -751,16 +769,22 @@ func CreateRoleBindingNamespaceKongLeaderElection(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "RoleBinding",
 			"metadata": map[string]interface{}{
 				"name":      "kong-leader-election",
 				"namespace": parent.Spec.Namespace, //  controlled by field: namespace
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"roleRef": map[string]interface{}{
@@ -790,15 +814,21 @@ func CreateClusterRoleBindingKongIngress(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
+	if parent.Spec.Kong.Include != true {
+		return []client.Object{}, nil
+	}
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
+			// +operator-builder:resource:field=kong.include,value=true,include
 			"apiVersion": "rbac.authorization.k8s.io/v1",
 			"kind":       "ClusterRoleBinding",
 			"metadata": map[string]interface{}{
 				"name": "kong-ingress",
 				"labels": map[string]interface{}{
-					"platform.nukleros.io/group":   "ingress",
-					"platform.nukleros.io/project": "kong-ingress-controller",
+					"platform.nukleros.io/category": "ingress",
+					"platform.nukleros.io/project":  "kong-ingress-controller",
 				},
 			},
 			"roleRef": map[string]interface{}{

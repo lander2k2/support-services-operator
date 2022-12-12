@@ -1,10 +1,11 @@
 ---
+# +operator-builder:resource:field=kong.include,value=true,include
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
     app: ingress-kong
-    platform.nukleros.io/group: ingress
+    platform.nukleros.io/category: ingress
     platform.nukleros.io/project: kong-ingress-controller
     app.kubernetes.io/name: kong-ingress
   name: ingress-kong
@@ -24,7 +25,7 @@ spec:
         traffic.sidecar.istio.io/includeInboundPorts: ""
       labels:
         app: ingress-kong
-        platform.nukleros.io/group: ingress
+        platform.nukleros.io/category: ingress
         platform.nukleros.io/project: kong-ingress-controller
     spec:
       automountServiceAccountToken: false

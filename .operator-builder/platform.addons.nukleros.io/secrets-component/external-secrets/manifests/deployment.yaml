@@ -1,4 +1,5 @@
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -8,7 +9,7 @@ metadata:
     app.kubernetes.io/name: external-secrets-cert-controller
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 spec:
   # +operator-builder:field:name=externalSecrets.certController.replicas,default="1",type=int,description=`
@@ -23,7 +24,7 @@ spec:
       labels:
         app.kubernetes.io/name: external-secrets-cert-controller
         app.kubernetes.io/instance: external-secrets
-        platform.nukleros.io/group: secrets
+        platform.nukleros.io/category: secrets
         platform.nukleros.io/project: external-secrets
     spec:
       serviceAccountName: external-secrets-cert-controller
@@ -82,6 +83,7 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -91,7 +93,7 @@ metadata:
     app.kubernetes.io/name: external-secrets
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 spec:
   # +operator-builder:field:name=externalSecrets.controller.replicas,default="2",type=int,description=`
@@ -106,7 +108,7 @@ spec:
       labels:
         app.kubernetes.io/name: external-secrets
         app.kubernetes.io/instance: external-secrets
-        platform.nukleros.io/group: secrets
+        platform.nukleros.io/category: secrets
         platform.nukleros.io/project: external-secrets
     spec:
       serviceAccountName: external-secrets
@@ -154,6 +156,7 @@ spec:
       nodeSelector:
         kubernetes.io/os: linux
 ---
+# +operator-builder:resource:field=externalSecrets.include,value=true,include
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -163,7 +166,7 @@ metadata:
     app.kubernetes.io/name: external-secrets-webhook
     app.kubernetes.io/instance: external-secrets
     app.kubernetes.io/version: v0.5.9 # +operator-builder:field:name=externalSecrets.version,default="v0.5.9",type=string
-    platform.nukleros.io/group: secrets
+    platform.nukleros.io/category: secrets
     platform.nukleros.io/project: external-secrets
 spec:
   # +operator-builder:field:name=externalSecrets.webhook.replicas,default="2",type=int,description=`
@@ -178,7 +181,7 @@ spec:
       labels:
         app.kubernetes.io/name: external-secrets-webhook
         app.kubernetes.io/instance: external-secrets
-        platform.nukleros.io/group: secrets
+        platform.nukleros.io/category: secrets
         platform.nukleros.io/project: external-secrets
     spec:
       hostNetwork: false

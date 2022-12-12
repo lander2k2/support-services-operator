@@ -64,6 +64,15 @@ spec:
                       \n Image repo and name to use for external-dns."
                     type: string
                   provider:
+                    default: none
+                    description: "(Default: \"none\") \n DNS provider.  One of: none
+                      | active-directory | google | route53. If \"none\" external
+                      DNS will not be installed."
+                    enum:
+                    - none
+                    - active-directory
+                    - google
+                    - route53
                     type: string
                   version:
                     default: v0.12.2
@@ -86,6 +95,11 @@ spec:
                           to use."
                         type: string
                     type: object
+                  include:
+                    default: false
+                    description: "(Default: false) \n Determines whether nginx project
+                      is included at installation time."
+                    type: boolean
                   ingressController:
                     properties:
                       image:
@@ -117,6 +131,11 @@ spec:
                     description: "(Default: \"nginx/nginx-ingress\") \n Image repo
                       and name to use for nginx."
                     type: string
+                  include:
+                    default: true
+                    description: "(Default: true) \n Determines whether nginx project
+                      is included at installation time."
+                    type: boolean
                   installType:
                     default: deployment
                     description: "(Default: \"deployment\") \n Method of install nginx

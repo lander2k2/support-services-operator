@@ -36,6 +36,7 @@ func CreateMutatingWebhookCertManagerWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "admissionregistration.k8s.io/v1",
@@ -43,13 +44,13 @@ func CreateMutatingWebhookCertManagerWebhook(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-webhook",
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 				"annotations": map[string]interface{}{
 					"cert-manager.io/inject-ca-from-secret": "nukleros-certs-system/cert-manager-webhook-ca",
@@ -107,6 +108,7 @@ func CreateValidatingWebhookCertManagerWebhook(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			"apiVersion": "admissionregistration.k8s.io/v1",
@@ -114,13 +116,13 @@ func CreateValidatingWebhookCertManagerWebhook(
 			"metadata": map[string]interface{}{
 				"name": "cert-manager-webhook",
 				"labels": map[string]interface{}{
-					"app":                          "webhook",
-					"app.kubernetes.io/name":       "webhook",
-					"app.kubernetes.io/instance":   "cert-manager",
-					"app.kubernetes.io/component":  "webhook",
-					"app.kubernetes.io/version":    "v1.9.1",
-					"platform.nukleros.io/group":   "certificates",
-					"platform.nukleros.io/project": "cert-manager",
+					"app":                           "webhook",
+					"app.kubernetes.io/name":        "webhook",
+					"app.kubernetes.io/instance":    "cert-manager",
+					"app.kubernetes.io/component":   "webhook",
+					"app.kubernetes.io/version":     "v1.9.1",
+					"platform.nukleros.io/category": "certificates",
+					"platform.nukleros.io/project":  "cert-manager",
 				},
 				"annotations": map[string]interface{}{
 					"cert-manager.io/inject-ca-from-secret": "nukleros-certs-system/cert-manager-webhook-ca",

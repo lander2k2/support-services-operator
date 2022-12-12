@@ -36,11 +36,20 @@ func CreateNamespaceNamespace(
 	reconciler workload.Reconciler,
 	req *workload.Request,
 ) ([]client.Object, error) {
+
 	var resourceObj = &unstructured.Unstructured{
 		Object: map[string]interface{}{
 			// controlled by field: nginx.installType
+			// controlled by field: nginx.include
+			// controlled by field: kong.include
+			// controlled by field: externalDNS.provider
 			//  +kubebuilder:validation:Enum=deployment;daemonset
 			//  Method of install nginx ingress controller.  One of: deployment | daemonset.
+			//  Determines whether nginx project is included at installation time.
+			//  Determines whether nginx project is included at installation time.
+			//  +kubebuilder:validation:Enum=none;active-directory;google;route53
+			//  DNS provider.  One of: none | active-directory | google | route53.
+			//  If "none" external DNS will not be installed.
 			"apiVersion": "v1",
 			"kind":       "Namespace",
 			"metadata": map[string]interface{}{
